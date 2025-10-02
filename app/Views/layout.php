@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SiPus - Sistem Informasi Perpustakaan</title>
-    <link rel="stylesheet" href="public/css/style.css">
-    <script src="public/js/script.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
     <header>
@@ -23,7 +23,7 @@
     </header>
 
     <main>
-        <?php if (isset($content)) echo $content; ?>
+        <?= $content ?>
     </main>
 
     <footer>

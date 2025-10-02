@@ -21,6 +21,8 @@ $page = $_GET['page'] ?? 'home';
 $action = $_GET['action'] ?? 'index';
 
 try {
+    $content = "";
+
     switch ($page) {
         case 'books':
             $controller = new BookController();
@@ -34,14 +36,23 @@ try {
         case 'auth':
             $controller = new AuthController();
             break;
-        default:
-            echo "<h1>Selamat Datang di SiPus</h1>";
-            echo "<p>Sistem Informasi Perpustakaan sederhana berbasis PHP OOP.</p>";
+        case 'home':
+            // Konten default
+            $content = "<h1>Selamat Datang di SiPus</h1><p>Sistem Informasi Perpustakaan sederhana berbasis PHP OOP.</p>";
+            include __DIR__ . '/../app/Views/layout.php';
             exit;
+        default:
+            throw new Exception("Halaman tidak ditemukan: $page");
     }
 
     if (method_exists($controller, $action)) {
+        // Tangkap output controller
+        ob_start();
         $controller->$action();
+        $content = ob_get_clean();
+
+        // Tampilkan ke layout
+        include __DIR__ . '/../app/Views/layout.php';
     } else {
         throw new Exception("Aksi tidak ditemukan: $action");
     }
