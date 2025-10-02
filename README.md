@@ -1,3 +1,12 @@
+---
+title: SiPus
+emoji: 📚
+colorFrom: indigo
+colorTo: purple
+sdk: docker
+app_file: Dockerfile
+pinned: false
+---
 # SiPus - Sistem Informasi Perpustakaan
 
 SiPus adalah aplikasi perpustakaan sederhana berbasis PHP OOP dengan pola MVC. Proyek ini dibuat untuk praktikum PBO dan mengimplementasikan 20 konsep OOP.
