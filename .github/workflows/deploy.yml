@@ -3,7 +3,7 @@ name: Deploy to Hugging Face Space
 on:
   push:
     branches:
-      - main   # atau branch yang kamu gunakan
+      - main   # sesuaikan dengan branch utama repo
 
 jobs:
   deploy:
@@ -12,9 +12,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Setup Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Push to Hugging Face Space
-        uses: huggingface/huggingface-action@main
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          hf_token: ${{ secrets.HF_TOKEN }}
-          repo-id: franzxml/sipus   # ganti dengan space ID kamu
+        run: |
+          git remote add space https://huggingface.co/spaces/franzxml/SiPus
+          git fetch space
+          git push space HEAD:main --force
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
