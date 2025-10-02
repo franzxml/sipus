@@ -1,0 +1,20 @@
+name: Deploy to Hugging Face Space
+
+on:
+  push:
+    branches:
+      - main   # atau branch yang kamu gunakan
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Push to Hugging Face Space
+        uses: huggingface/huggingface-action@main
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          hf_token: ${{ secrets.HF_TOKEN }}
+          repo-id: franzxml/sipus   # ganti dengan space ID kamu
