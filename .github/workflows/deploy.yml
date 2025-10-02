@@ -3,7 +3,7 @@ name: Deploy to Hugging Face Space
 on:
   push:
     branches:
-      - main   # sesuaikan dengan branch utama repo
+      - main
 
 jobs:
   deploy:
@@ -19,8 +19,7 @@ jobs:
 
       - name: Push to Hugging Face Space
         run: |
-          git remote add space https://huggingface.co/spaces/franzxml/SiPus
-          git fetch space
+          git remote add space https://user:${HF_TOKEN}@huggingface.co/spaces/franzxml/SiPus
           git push space HEAD:main --force
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
