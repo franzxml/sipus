@@ -1,0 +1,13 @@
+{
+  "name": "sipus/library-system",
+  "description": "SiPus - Sistem Informasi Perpustakaan berbasis PHP OOP",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "php": ">=8.0"
+  }
+}
